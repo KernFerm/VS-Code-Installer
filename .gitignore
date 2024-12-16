@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Installer logs
+*.log
+
+# VS Code installer log
+VSCodeInstallLog.txt
+
+# Python virtual environment
+venv/
+env/
+
+# Python installation executable
+python-3.11.6.exe
+
+# VS Code installer executable
+VSCodeSetup.exe
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Windows specific files
+*.bat
+*.exe
+
+# Ignore the .env file if you have one
+.env
