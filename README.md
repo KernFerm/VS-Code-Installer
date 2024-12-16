@@ -1,6 +1,6 @@
 # VS Code Installer Script
 
-This script automates the installation of Visual Studio Code and its extensions on a Windows machine.
+💻 This script automates the installation of Visual Studio Code and its extensions on a Windows machine. ⚙️
 
 ## Features
 
