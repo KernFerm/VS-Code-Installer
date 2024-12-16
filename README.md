@@ -24,6 +24,9 @@ This script automates the installation of Visual Studio Code and its extensions 
     ```
 
 2. Run the script:
+3. `Right Click` on `VS-Code-Installer-main` copy PATH, Open `CMD.exe` in **ADMIN MODE**
+- paste the location you just copied to `CMD.exe`
+- type below or copy and paste in `CMD.exe`
     ```
     python main.py
     ```
