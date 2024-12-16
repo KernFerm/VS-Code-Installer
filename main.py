@@ -90,7 +90,13 @@ def install_extensions():
         "ms-vscode.js-debug-nightly",
         "redhat.java",
         "vscjava.vscode-maven",
-        "vscjava.vscode-java-dependency"
+        "vscjava.vscode-java-dependency",
+        "mathiasfrohlich.Kotlin",
+        "ms-vscode.remote-server",
+        "WakaTime.vscode-wakatime",
+        "Ionide.Ionide-fsharp",
+        "vscjava.vscode-gradle",
+        "golang.go"
     ]
     if not vs_code_executable_path:
         log_message("Visual Studio Code executable not found. Cannot install extensions.")
