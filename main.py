@@ -49,12 +49,7 @@ else:
 
     # Download the installer
     log_message("Downloading Visual Studio Code installer...")
-    try:
-        urllib.request.urlretrieve(url, installer_path)
-        log_message("Download completed.")
-    except Exception as e:
-        log_message(f"Failed to download Visual Studio Code installer: {e}")
-        exit(1)
+    download_file(url, installer_path)
 
     # Run the installer with user-level installation
     log_message("Running the Visual Studio Code installer...")
@@ -138,13 +133,13 @@ def install_vscode_extension(extension, index, total):
         log_message(f"Extension {extension} is already installed.")
         return
     try:
-        subprocess.run([os.path.join(os.getenv('USERPROFILE'), 'AppData', 'Local', 'Programs', 'Microsoft VS Code', 'bin', 'code.cmd'), '--install-extension', extension, '--force'], check=True)
+        subprocess.run(['code', '--install-extension', extension, '--force'], check=True)
         log_message(f"Successfully installed extension: {extension}.")
     except subprocess.CalledProcessError as e:
         log_message(f"Failed to install extension: {extension}. Error: {e}")
 
 def is_extension_installed(extension):
-    result = subprocess.run([os.path.join(os.getenv('USERPROFILE'), 'AppData', 'Local', 'Programs', 'Microsoft VS Code', 'bin', 'code.cmd'), '--list-extensions'], capture_output=True, text=True)
+    result = subprocess.run(['code', '--list-extensions'], capture_output=True, text=True)
     return extension in result.stdout
 
 total_extensions = len(extensions)
