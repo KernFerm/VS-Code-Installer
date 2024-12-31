@@ -13,7 +13,13 @@
 
 - Python 3.11.6 installed on your machine
 - If you don't have `Python` installed, use this installer in the repo:
-  1. `install_python.bat` - **RUN AS ADMIN**
+  1. `install_python.bat`
+  2. - run the `install_python.bat` follow the prompts that appear when installing.
+     - open up `CMD.exe` type
+```
+python --version
+```
+should show in terminal the correct python verison you installed.
 
 ## Usage
 
