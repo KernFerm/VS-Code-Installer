@@ -25,8 +25,8 @@ should show in terminal the correct python verison you installed.
 
 1. Clone this repository to your local machine:
     ```
-    git clone https://github.com/kernferm/vscode-installer.git
-    cd vscode-installer
+    git clone https://github.com/kernferm/VS-Code-Installer.git
+    cd VS-Code-Installer
     ```
 
 2. Run the script:
