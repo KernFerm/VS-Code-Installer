@@ -1,6 +1,7 @@
 import os
 import subprocess
 from datetime import datetime
+import requests
 
 # Define the path to the log file
 log_file_path = os.path.join(os.getenv('TEMP'), 'VSCodeInstallLog.txt')
@@ -17,21 +18,44 @@ def log_message(message):
 def find_vscode_executable():
     possible_paths = [
         os.path.join(os.getenv('LOCALAPPDATA'), 'Programs', 'Microsoft VS Code', 'bin', 'code.cmd'),  # Default installation path
-        os.path.join(os.getenv('ProgramFiles'), 'Microsoft VS Code', 'bin', 'code.cmd'),  # Possible on 64-bit systems with 64-bit VS Code
-        os.path.join(os.getenv('ProgramFiles(x86)'), 'Microsoft VS Code', 'bin', 'code.cmd'),  # Possible on 64-bit systems with 32-bit VS Code
+        os.path.join(os.getenv('ProgramFiles'), 'Microsoft VS Code', 'bin', 'code.cmd'),  # Possible on 64-bit systems
+        os.path.join(os.getenv('ProgramFiles(x86)'), 'Microsoft VS Code', 'bin', 'code.cmd'),  # Possible on 32-bit systems
     ]
     for path in possible_paths:
         if os.path.exists(path):
             return path
     return None  # Return None if not found
 
-vs_code_executable_path = find_vscode_executable()
+# Function to download and install VS Code
+def install_vscode():
+    log_message("Visual Studio Code is not installed. Downloading the installer...")
+    vscode_installer_url = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+    installer_path = os.path.join(os.getenv('TEMP'), 'VSCodeSetup.exe')
+    
+    # Download the installer
+    try:
+        response = requests.get(vscode_installer_url, stream=True)
+        response.raise_for_status()
+        with open(installer_path, 'wb') as installer_file:
+            for chunk in response.iter_content(chunk_size=8192):
+                installer_file.write(chunk)
+        log_message(f"VS Code installer downloaded to {installer_path}.")
+    except requests.RequestException as e:
+        log_message(f"Failed to download VS Code installer. Error: {e}")
+        return False
+
+    # Run the installer
+    log_message("Running the VS Code installer...")
+    try:
+        subprocess.run([installer_path, '/VERYSILENT', '/NORESTART'], check=True)
+        log_message("Visual Studio Code installation completed.")
+        return True
+    except subprocess.CalledProcessError as e:
+        log_message(f"Failed to install VS Code. Error: {e}")
+        return False
 
 # Function to check if an extension is already installed
-def is_extension_installed(extension):
-    if not vs_code_executable_path:
-        log_message("Visual Studio Code executable not found.")
-        return False
+def is_extension_installed(extension, vs_code_executable_path):
     try:
         result = subprocess.run([vs_code_executable_path, '--list-extensions'], capture_output=True, text=True)
         return extension in result.stdout
@@ -40,13 +64,10 @@ def is_extension_installed(extension):
         return False
 
 # Function to install a single VS Code extension
-def install_vscode_extension(extension, index, total):
-    if not vs_code_executable_path:
-        log_message("Cannot install extensions without a valid path to VS Code.")
-        return
+def install_vscode_extension(extension, index, total, vs_code_executable_path):
     percentage = (index + 1) / total * 100
     log_message(f"Installing VS Code extension ({index + 1}/{total} - {percentage:.2f}%): {extension}...")
-    if is_extension_installed(extension):
+    if is_extension_installed(extension, vs_code_executable_path):
         log_message(f"Extension {extension} is already installed.")
         return
     try:
@@ -56,7 +77,7 @@ def install_vscode_extension(extension, index, total):
         log_message(f"Failed to install extension: {extension}. Error: {e}")
 
 # Function to install multiple VS Code extensions
-def install_extensions():
+def install_extensions(vs_code_executable_path):
     extensions = [
         "ms-python.vscode-pylance",
         "ms-python.python",
@@ -98,23 +119,28 @@ def install_extensions():
         "vscjava.vscode-gradle",
         "golang.go"
     ]
-    if not vs_code_executable_path:
-        log_message("Visual Studio Code executable not found. Cannot install extensions.")
-        return
     total_extensions = len(extensions)
     log_message(f"Checking and installing {total_extensions} extensions...")
     for index, extension in enumerate(extensions):
-        install_vscode_extension(extension, index, total_extensions)
+        install_vscode_extension(extension, index, total_extensions, vs_code_executable_path)
     log_message("VS Code extensions installation completed.")
 
 # Main function to coordinate the installation
 def main():
     log_message("Starting Visual Studio Code setup...")
-    if vs_code_executable_path:
-        log_message(f"Found Visual Studio Code at {vs_code_executable_path}")
-        install_extensions()
+    vs_code_executable_path = find_vscode_executable()
+    if not vs_code_executable_path:
+        log_message("Visual Studio Code not found. Proceeding to download and install...")
+        if not install_vscode():
+            log_message("Failed to install Visual Studio Code. Exiting setup.")
+            return
+        vs_code_executable_path = find_vscode_executable()
+        if not vs_code_executable_path:
+            log_message("Visual Studio Code executable not found after installation. Exiting setup.")
+            return
     else:
-        log_message("Visual Studio Code is not installed. Please install it first and ensure 'code' command is available in PATH.")
+        log_message(f"Found Visual Studio Code at {vs_code_executable_path}")
+    install_extensions(vs_code_executable_path)
 
 if __name__ == "__main__":
     main()
