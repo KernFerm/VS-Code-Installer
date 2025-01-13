@@ -5,7 +5,8 @@
 ## Features
 
 - Downloads and installs Visual Studio Code
-- Adds VS Code to the user PATH
+- Will open `VSC` and continue to install the extensions for visual studio code 
+- Adds VS Code to the `user PATH`
 - Installs a list of predefined VS Code extensions
 - Logs the installation process
 
@@ -14,12 +15,12 @@
 - Python 3.11.6 installed on your machine
 - If you don't have `Python` installed, use this installer in the repo:
   1. `install_python.bat`
-  2. - run the `install_python.bat` follow the prompts that appear when installing.
-     - open up `CMD.exe` type
-```
-python --version
-```
-should show in terminal the correct python verison you installed.
+  2. Run the `install_python.bat` and follow the prompts that appear during installation.
+  3. After installation, open `CMD.exe` and type:
+     ```
+     python --version
+     ```
+     It should display the correct Python version you installed.
 
 ## Usage
 
@@ -30,13 +31,16 @@ should show in terminal the correct python verison you installed.
     ```
 
 2. Run the script:
-3. `Right Click` on `VS-Code-Installer-main` copy PATH, Open `CMD.exe` in **ADMIN MODE**
-- paste the location you just copied to `CMD.exe`
-- `CD` paste `<location you just copied>`
-- type below or copy and paste in `CMD.exe`
-    ```
-    python main.py
-    ```
+   - Right-click on the `VS-Code-Installer-main` folder and copy the PATH.
+   - Open `CMD.exe` (Admin Mode is NOT required).
+   - Navigate to the folder by typing:
+     ```
+     cd <paste the location you copied>
+     ```
+   - Then run the script:
+     ```
+     python main.py
+     ```
 
 ## Extensions Installed
 
@@ -82,6 +86,6 @@ The script logs all actions to a log file located at `%TEMP%\VSCodeInstallLog.tx
 
 ## License
 
-This project is proprietary and all rights are reserved by the author.
-Unauthorized copying, distribution, or modification of this project is strictly prohibited.
+This project is proprietary and all rights are reserved by the author.  
+Unauthorized copying, distribution, or modification of this project is strictly prohibited.  
 Unless you have written permission from the Developer or the FNBUBBLES420 ORG.
