@@ -1,31 +1,32 @@
-# Byte-compiled / optimized / DLL files
+# Ignore Python cache and environment files
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Installer logs
-*.log
-
-# VS Code installer log
-VSCodeInstallLog.txt
-
-# Python virtual environment
-venv/
+*.pyc
+*.pyo
+*.pyd
+*.venv/
 env/
+venv/
+.idea/
+.vscode/
 
-# Python installation executable
-python-3.11.6.exe
-
-# VS Code installer executable
-VSCodeSetup.exe
-
-# System files
+# Ignore system files
 .DS_Store
 Thumbs.db
 
-# Windows specific files
-*.bat
-*.exe
+# Ignore logs and temporary files
+*.log
+*.tmp
 
-# Ignore the .env file if you have one
-.env
+# Ignore compiled files
+*.exe
+*.out
+*.o
+
+# Ignore dependency-related files
+node_modules/
+*.egg-info/
+dist/
+build/
+
+# Ignore specific files in the repository
+install_python.bat
