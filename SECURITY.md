@@ -7,5 +7,6 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.1.3   | :white_check_mark: |
+| 0.2.6   | :white_check_mark: |
 
+- **Python Version Supported**:`3.11.9`
