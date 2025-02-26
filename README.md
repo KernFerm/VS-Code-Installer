@@ -12,10 +12,10 @@
 
 ## Prerequisites
 
-- Python 3.11.6 installed on your machine
+- Python 3.11.9 installed on your machine
 - If you don't have `Python` installed, use this installer in the repo:
-  1. `install_python.bat`
-  2. Run the `install_python.bat` and follow the prompts that appear during installation.
+  1. `python3119.bat`
+  2. Run the `python3119.bat` and follow the prompts that appear during installation.
   3. After installation, open `CMD.exe` and type:
      ```
      python --version
@@ -24,13 +24,7 @@
 
 ## Usage
 
-1. Clone this repository to your local machine:
-    ```
-    git clone https://github.com/kernferm/VS-Code-Installer.git
-    cd VS-Code-Installer
-    ```
-
-2. Run the script:
+A. Run the script:
    - Right-click on the `VS-Code-Installer-main` folder and copy the PATH.
    - Open `CMD.exe` (Admin Mode is NOT required).
    - Navigate to the folder by typing:
