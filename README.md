@@ -4,6 +4,8 @@
 
 ## Features
 
+- [https://discord.gg/FxJd3PxXbc](https://discord.gg/FxJd3PxXbc)
+
 - Downloads and installs Visual Studio Code
 - Will open `VSC` and continue to install the extensions for visual studio code 
 - Adds VS Code to the `user PATH`
