@@ -24,7 +24,10 @@ This script provides a complete automated setup for Python development environme
 
 ## 🚀 Usage
 
-1. **use the pythonvisualstudio.exe**
+1. **use the pythonvisualstudio.exe**.
+2. extract or unzip folder to desktop.
+3. double click the `pythonvisualstudio.exe`.
+4. follow the instructions in the `Console window`. 
 
 ### What Happens When You Run It:
 
