@@ -10,3 +10,5 @@ currently being supported with security updates.
 | 0.2.6   | :white_check_mark: |
 
 - **Python Version Supported**:`3.11.9`
+
+[securitygithubissue@fnbubbles420.org](mailto:securitygithubissue@fnbubbles420.org)
